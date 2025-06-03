@@ -1,0 +1,131 @@
+/* --------------------------------------------- */
+/* 1) Estilos generales de la portada (#cover)   */
+/* --------------------------------------------- */
+#cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Degradado suave en tonos pastel */
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+  overflow: hidden;   /* Para que los corazones no se salgan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2; /* Encima de todo */
+}
+
+.cover-content {
+  max-width: 80%;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  font-family: 'Brush Script MT', cursive, sans-serif;
+}
+
+.cover-content h1 {
+  font-size: 3rem;
+  margin: 0 0 0.5rem;
+}
+
+.cover-content p {
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+  line-height: 1.4;
+}
+
+/* --------------------------------------------- */
+/* 2) Corazones animados en la portada          */
+/* --------------------------------------------- */
+.heart {
+  position: absolute;
+  bottom: -50px;
+  font-size: 2rem;
+  opacity: 0.8;
+  animation-name: floatHeart;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-150vh) scale(1.3);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-200vh) scale(1);
+    opacity: 0;
+  }
+}
+
+/* ------------------------------------------------- */
+/* 3) Estilos del body y canvas de fondo (Hearts)    */
+/* ------------------------------------------------- */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #2c003e 0%, #000000 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Lluvia de corazoncitos: ocupa toda la ventana */
+#heartsCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------- */
+/* 4) Contenedor del corazón central (círculo)       */
+/* ------------------------------------------------- */
+.heart-container {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  z-index: 1; /* Encima de #heartsCanvas, pero debajo de #cover */
+}
+
+/* ------------------------------------------------- */
+/* 5) Canvas del “spiral heart”                      */
+/* ------------------------------------------------- */
+#heartCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+}
+
+/* ------------------------------------------------- */
+/* 6) Animaciones (para referencia, las letras       */
+/*     se dibujan mediante JS, pero dejamos estos    */
+/*     keyframes si quisieras más adelante aplicarlos)*/
+/* ------------------------------------------------- */
+@keyframes flame-colors {
+  0%   { background-position: 0% 50%; }
+  25%  { background-position: 50% 50%; }
+  50%  { background-position: 100% 50%; }
+  75%  { background-position: 50% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.9;
+  }
+}
